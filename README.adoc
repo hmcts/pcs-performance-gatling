@@ -1,0 +1,18 @@
+### <Service Name> Gatling Performance Tests
+
+*** INSTRUCTIONS (Remove this list once complete):
+ 1. Rename the Service_Simulation and DemoScenario files
+ 2. Create scenarios as required using the DemoScenario template
+ 3. Update the simulation with the scenarios required, volumes, workload model, etc
+ 4. Update the url in the Environment file
+ 5. Update the build.gradle with the simulation name
+ 6. Update the Jenkins_nightly file to run in a nightly pipeline (ensure you add the necessary tags to the repo for Jenkins to pick it up)
+ 7. Update the settings.gradle, replacing `template-performance` with the project name
+ 8. Follow the [readme](https://github.com/hmcts/common-performance/blob/master/README.md#%EF%B8%8F-setup-instructions) to setup the common-performance submodule in the new project
+
+To run locally:
+- Performance test against the perftest environment: `./gradlew gatlingRun`
+
+Flags:
+- Debug (single-user mode): `-Ddebug=on e.g. ./gradlew gatlingRun -Ddebug=on`
+- Run against AAT: `Denv=aat e.g. ./gradlew gatlingRun -Denv=aat`

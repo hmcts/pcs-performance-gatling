@@ -1,0 +1,5 @@
+rootProject.name = 'template-performance' //TODO: update this with the project name
+
+include ':common-performance'
+
+project(':common-performance').projectDir = file('common/common-performance')
