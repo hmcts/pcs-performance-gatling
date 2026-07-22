@@ -1,0 +1,35 @@
+package scenarios
+
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
+import utils.{Environment, Headers}
+
+object Homepage {
+
+  val BaseURL = Environment.baseURL
+  val IdamURL = Environment.idamURL
+
+  val MinThinkTime = Environment.minThinkTime
+  val MaxThinkTime = Environment.maxThinkTime
+
+  val CommonHeader = Environment.commonHeader
+
+  val PossessionClaimsServiceHomepage =
+
+    exec(flushHttpCache)
+    .exec(flushCookieJar)
+
+    .group("PossessionClaimsService_001_HomePage") {
+
+      exec(http("PossessionClaimsService_001_005_HomePage")
+        .get(BaseURL + "/")
+        .headers(CommonHeader)
+        .header("sec-fetch-site", "none")
+        .check(regex("state=([a-z0-9-]+)&client").saveAs("state"))
+        .check(CsrfCheck.save)
+        .check(substring("Sign in or create an account")))
+
+    }
+
+    .pause(MinThinkTime.seconds, MaxThinkTime.seconds)
+}
