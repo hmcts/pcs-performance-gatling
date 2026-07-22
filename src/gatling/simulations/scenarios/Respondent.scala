@@ -19,7 +19,7 @@ object Respondent {
     group("PossessionClaims_006_CheckBeforeStart") {
 
       exec(http("PossessionClaims_006_005_CheckBeforeStart")
-        .get(BaseURL + "/case/#{caseId}/respond-to-claim/start-now")   //#{caseId}
+        .get(BaseURL + "/case/#{caseId}/respond-to-claim/start-now")
         .headers(CommonHeader)
         .check(CsrfCheck.save)
         .check(substring("Respond to a property possession claim online"))
@@ -32,8 +32,9 @@ object Respondent {
     .group("PossessionClaims_007_CheckBeforeStartSubmit") {
 
       exec(http("PossessionClaims_007_005_CheckBeforeStartSubmit")
-          .post(BaseURL + "/case/#{caseId}/respond-to-claim/start-now")   //#{caseId}
+          .post(BaseURL + "/case/#{caseId}/respond-to-claim/start-now")
           .headers(CommonHeader)
+          .headers(PostHeader)
           .formParam("_csrf", "#{csrf}")
           .check(substring("You’re entitled to free legal advice"))
           .check(substring("Have you had any free legal advice?")))
@@ -44,8 +45,9 @@ object Respondent {
     .group("PossessionClaims_008_FreeLegalAdvice") {
 
       exec(http("PossessionClaims_008_005_FreeLegalAdvice")
-          .post(BaseURL + "/case/#{caseId}/respond-to-claim/free-legal-advice?nav=1")   //#{caseId}
+          .post(BaseURL + "/case/#{caseId}/respond-to-claim/free-legal-advice?nav=1")
           .headers(CommonHeader)
+          .headers(PostHeader)
           .formParam("hadLegalAdvice", "no")
           .formParam("action", "continue")
           .formParam("_csrf", "#{csrf}")
@@ -57,8 +59,9 @@ object Respondent {
     .group("PossessionClaims_009_Solicitor") {
 
       exec(http("PossessionClaims_009_005_Solicitor")
-          .post(BaseURL + "/case/#{caseId}/respond-to-claim/solicitor?nav=1")   //#{caseId}
+          .post(BaseURL + "/case/#{caseId}/respond-to-claim/solicitor?nav=1")
           .headers(CommonHeader)
+          .headers(PostHeader)
           .formParam("hasSolicitor", "NO")
           .formParam("action", "continue")
           .formParam("_csrf", "#{csrf}")
@@ -68,11 +71,12 @@ object Respondent {
       
     .pause(MinThinkTime, MaxThinkTime)
 
-    .group("PossessionClaims_009_CheckYourAnswersSubmit") {
+    .group("PossessionClaims_010_CheckYourAnswersSubmit") {
 
-      exec(http("PossessionClaims_009_005_CheckYourAnswersSubmit")
-          .post(BaseURL + "/case/#{caseId}/respond-to-claim/check-your-answers-start-now-and-details")   //#{caseId}
+      exec(http("PossessionClaims_010_005_CheckYourAnswersSubmit")
+          .post(BaseURL + "/case/#{caseId}/respond-to-claim/check-your-answers-start-now-and-details")
           .headers(CommonHeader)
+          .headers(PostHeader)
           .formParam("action", "continue")
           .formParam("_csrf", "#{csrf}")
           .check(substring("Read information about responding and free legal advice<span class=\"govuk-visually-hidden\"> &ndash; Done</span>"))

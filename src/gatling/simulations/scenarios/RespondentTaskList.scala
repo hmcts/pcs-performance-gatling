@@ -12,14 +12,13 @@ object RespondentTaskList {
   val MaxThinkTime = Environment.maxThinkTime
 
   val CommonHeader = Headers.commonHeader
-  val PostHeader = Headers.postHeader
 
   val RespondToTheClaim =
 
     group("PossessionClaims_005_RespondToTheClaim") {
 
       exec(http("PossessionClaims_005_005_RespondToTheClaim")
-        .get(BaseURL + "/case/#{caseId}/respond-to-claim/task-list")   //#{caseId}
+        .get(BaseURL + "/case/#{caseId}/respond-to-claim/task-list")
         .headers(CommonHeader)
         .check(substring("1. Check before you start"))
         .check(substring("4. Review and submit"))

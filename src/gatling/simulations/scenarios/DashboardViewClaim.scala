@@ -7,13 +7,11 @@ import utils.{Environment, Headers, CsrfCheck}
 object DashboardViewClaim {
 
   val BaseURL = Environment.baseURL
-  val IdamURL = Environment.idamURL
 
   val MinThinkTime = Environment.minThinkTime
   val MaxThinkTime = Environment.maxThinkTime
 
   val CommonHeader = Headers.commonHeader
-  val PostHeader = Headers.postHeader
 
   val ViewTheClaim =
 
