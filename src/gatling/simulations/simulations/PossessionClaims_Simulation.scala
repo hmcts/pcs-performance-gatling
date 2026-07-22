@@ -68,7 +68,14 @@ class PossessionClaims_Simulation extends Simulation {
       exec(_.set("env", s"${env}"))
       .exec(
         //CreateUser.CreateCitizen,
-        Homepage.PossessionClaimsServiceHomepage
+        Homepage.PossessionClaimsServiceHomepage,
+        Login.PossessionClaimsServiceLogin,
+        CitizenHub.ViewClaimDashboard,
+        DashboardViewClaim.ViewTheClaim,
+        CitizenHub.ViewClaimDashboard, // <<-- this simulates going back to the main view dashboard
+        RespondentTaskList.RespondToTheClaim,
+        Respondent.CheckBeforeStart
+
       )
     }
 

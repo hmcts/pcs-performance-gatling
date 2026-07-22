@@ -7,7 +7,6 @@ import utils.{Environment, Headers, CsrfCheck}
 object Homepage {
 
   val BaseURL = Environment.baseURL
-  val IdamURL = Environment.idamURL
 
   val MinThinkTime = Environment.minThinkTime
   val MaxThinkTime = Environment.maxThinkTime
@@ -25,11 +24,11 @@ object Homepage {
         .get(BaseURL + "/")
         .headers(CommonHeader)
         .header("sec-fetch-site", "none")
-        //.check(regex("state=([a-z0-9-]+)&client").saveAs("state"))
-        //.check(CsrfCheck.save)
+        .check(regex("""nonce=([\w=-]+)&amp;response_type""").saveAs("nonce"))
+        .check(regex("""code_challenge=([\w=-]+)&amp;code_challenge_method""").saveAs("codeChallenge"))
+        .check(regex("""code_challenge_method=([\w-]+)"""").saveAs("codeChallengeMethod"))
+        .check(CsrfCheck.save)
         .check(substring("Sign in or create an account")))
-
     }
-
     .pause(MinThinkTime, MaxThinkTime)
 }
