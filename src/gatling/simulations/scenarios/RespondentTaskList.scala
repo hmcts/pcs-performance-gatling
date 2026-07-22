@@ -19,7 +19,7 @@ object RespondentTaskList {
     group("PossessionClaims_005_RespondToTheClaim") {
 
       exec(http("PossessionClaims_005_005_RespondToTheClaim")
-        .get(BaseURL + "/case/1781215522091823/respond-to-claim/task-list")   //#{caseId}
+        .get(BaseURL + "/case/#{caseId}/respond-to-claim/task-list")   //#{caseId}
         .headers(CommonHeader)
         .check(substring("1. Check before you start"))
         .check(substring("4. Review and submit"))

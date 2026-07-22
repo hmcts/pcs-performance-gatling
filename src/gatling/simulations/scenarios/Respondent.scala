@@ -19,7 +19,7 @@ object Respondent {
     group("PossessionClaims_006_CheckBeforeStart") {
 
       exec(http("PossessionClaims_006_005_CheckBeforeStart")
-        .get(BaseURL + "/case/1781215522091823/respond-to-claim/start-now")   //#{caseId}
+        .get(BaseURL + "/case/#{caseId}/respond-to-claim/start-now")   //#{caseId}
         .headers(CommonHeader)
         .check(CsrfCheck.save)
         .check(substring("Respond to a property possession claim online"))
@@ -29,10 +29,10 @@ object Respondent {
 
     .pause(MinThinkTime, MaxThinkTime)
 
-    group("PossessionClaims_007_CheckBeforeStartSubmit") {
+    .group("PossessionClaims_007_CheckBeforeStartSubmit") {
 
       exec(http("PossessionClaims_007_005_CheckBeforeStartSubmit")
-          .post(BaseURL + "/case/1781215522091823/respond-to-claim/start-now")   //#{caseId}
+          .post(BaseURL + "/case/#{caseId}/respond-to-claim/start-now")   //#{caseId}
           .headers(CommonHeader)
           .formParam("_csrf", "#{csrf}")
           .check(substring("You’re entitled to free legal advice"))
@@ -40,4 +40,46 @@ object Respondent {
       }
 
     .pause(MinThinkTime, MaxThinkTime)
+
+    .group("PossessionClaims_008_FreeLegalAdvice") {
+
+      exec(http("PossessionClaims_008_005_FreeLegalAdvice")
+          .post(BaseURL + "/case/#{caseId}/respond-to-claim/free-legal-advice?nav=1")   //#{caseId}
+          .headers(CommonHeader)
+          .formParam("hadLegalAdvice", "no")
+          .formParam("action", "continue")
+          .formParam("_csrf", "#{csrf}")
+          .check(substring("Do you have a solicitor?")))
+      }
+
+    .pause(MinThinkTime, MaxThinkTime)
+
+    .group("PossessionClaims_009_Solicitor") {
+
+      exec(http("PossessionClaims_009_005_Solicitor")
+          .post(BaseURL + "/case/#{caseId}/respond-to-claim/solicitor?nav=1")   //#{caseId}
+          .headers(CommonHeader)
+          .formParam("hasSolicitor", "NO")
+          .formParam("action", "continue")
+          .formParam("_csrf", "#{csrf}")
+          .check(substring("Check your answers"))
+          .check(substring("Free legal advice")))
+      }
+      
+    .pause(MinThinkTime, MaxThinkTime)
+
+    .group("PossessionClaims_009_CheckYourAnswersSubmit") {
+
+      exec(http("PossessionClaims_009_005_CheckYourAnswersSubmit")
+          .post(BaseURL + "/case/#{caseId}/respond-to-claim/check-your-answers-start-now-and-details")   //#{caseId}
+          .headers(CommonHeader)
+          .formParam("action", "continue")
+          .formParam("_csrf", "#{csrf}")
+          .check(substring("Read information about responding and free legal advice<span class=\"govuk-visually-hidden\"> &ndash; Done</span>"))
+          .check(substring("Review and submit")))
+      }
+      
+    .pause(MinThinkTime, MaxThinkTime)
+
+
 }

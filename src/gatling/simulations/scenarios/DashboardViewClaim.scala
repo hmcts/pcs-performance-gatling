@@ -20,10 +20,10 @@ object DashboardViewClaim {
     group("PossessionClaims_004_ViewTheClaim") {
 
       exec(http("PossessionClaims_004_005_ViewTheClaim")
-        .get(BaseURL + "/case/1781215522091823/view-the-claim")   //#{caseId}
+        .get(BaseURL + "/case/#{caseId}/view-the-claim")   //#{caseId}
         .headers(CommonHeader)
         .check(substring("Date submitted"))
-        .check(substring("Statement of Truth"))
+        .check(substring("Statement of truth"))
         .check(substring("Case number:"))) 
 
     }

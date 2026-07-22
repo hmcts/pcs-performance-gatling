@@ -20,7 +20,7 @@ object CitizenHub {
     group("PossessionClaims_003_ViewClaimDashboard") {
 
       exec(http("PossessionClaims_003_005_ViewClaimDashboard")
-        .get(BaseURL + "/case/1781215522091823/dashboard")   //#{caseId}
+        .get(BaseURL + "/case/#{caseId}/dashboard")   //#{caseId}
         .headers(CommonHeader)
         .check(substring("A property possession claim"))
         .check(substring("Case number:"))) 
