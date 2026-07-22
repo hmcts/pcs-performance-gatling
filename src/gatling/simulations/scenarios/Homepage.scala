@@ -2,7 +2,7 @@ package scenarios
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import utils.{Environment, Headers}
+import utils.{Environment, Headers, CsrfCheck}
 
 object Homepage {
 
@@ -12,7 +12,7 @@ object Homepage {
   val MinThinkTime = Environment.minThinkTime
   val MaxThinkTime = Environment.maxThinkTime
 
-  val CommonHeader = Environment.commonHeader
+  val CommonHeader = Headers.commonHeader
 
   val PossessionClaimsServiceHomepage =
 

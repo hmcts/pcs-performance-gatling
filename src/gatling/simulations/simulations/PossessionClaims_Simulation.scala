@@ -62,10 +62,13 @@ class PossesionClaims_Simulation extends Simulation {
     println(s"Debug Mode: ${debugMode}")
   }
 
-  val Scenario = scenario( "Scenario")
+  val CUIRespondToClaim = scenario( "Citizen Respondent Scenario")
     .exitBlockOnFail {
       exec(_.set("env", s"${env}"))
-      .exec(DemoScenario.Homepage)
+      .exec(
+        CreateUser.CreateCitizen,
+        Homepage.PossessionClaimsServiceHomepage
+      )
     }
 
   //defines the Gatling simulation model, based on the inputs
@@ -103,7 +106,7 @@ class PossesionClaims_Simulation extends Simulation {
   }
 
   setUp(
-    Scenario.inject(simulationProfile(testType, ratePerSec, numberOfPipelineUsers)).pauses(pauseOption)
+    CUIRespondToClaim.inject(simulationProfile(testType, ratePerSec, numberOfPipelineUsers)).pauses(pauseOption)
   ).protocols(httpProtocol)
   .assertions(assertions(testType))
 
