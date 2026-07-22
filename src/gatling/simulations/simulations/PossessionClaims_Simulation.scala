@@ -11,7 +11,7 @@ import utils.Environment
 
 import scala.concurrent.duration._
 
-class Service_Simulation extends Simulation {
+class PossesionClaims_Simulation extends Simulation {
 
   /* TEST TYPE DEFINITION */
   /* pipeline = nightly pipeline against the perftest/AAT environment (configure the Jenkins_nightly file) */

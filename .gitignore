@@ -11,3 +11,5 @@ out/**
 *.lock
 .metals
 .vscode
+.bloop
+bin/*

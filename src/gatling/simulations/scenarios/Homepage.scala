@@ -19,9 +19,9 @@ object Homepage {
     exec(flushHttpCache)
     .exec(flushCookieJar)
 
-    .group("PossessionClaimsService_001_HomePage") {
+    .group("PossessionClaims_001_HomePage") {
 
-      exec(http("PossessionClaimsService_001_005_HomePage")
+      exec(http("PossessionClaims_001_005_HomePage")
         .get(BaseURL + "/")
         .headers(CommonHeader)
         .header("sec-fetch-site", "none")
