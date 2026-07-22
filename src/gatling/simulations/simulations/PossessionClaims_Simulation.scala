@@ -66,7 +66,7 @@ class PossessionClaims_Simulation extends Simulation {
   val CUIRespondToClaim = scenario( "Citizen Respondent Scenario")
     .exitBlockOnFail {
       exec(_.set("env", s"${env}"))
-      .exec(_.set("caseId", "1781215522091823")) // hard coded for now until approach understood
+      .exec(_.set("caseId", "1781545193968515")) // hard coded for now until approach understood 1781215522091823, 1781545193968515
       .exec(
         //CreateUser.CreateCitizen,
         Homepage.PossessionClaimsServiceHomepage,
