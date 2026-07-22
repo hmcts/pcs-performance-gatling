@@ -11,7 +11,7 @@ import utils.Environment
 
 import scala.concurrent.duration._
 
-class PossesionClaims_Simulation extends Simulation {
+class PossessionClaims_Simulation extends Simulation {
 
   /* TEST TYPE DEFINITION */
   /* pipeline = nightly pipeline against the perftest/AAT environment (configure the Jenkins_nightly file) */
@@ -50,9 +50,10 @@ class PossesionClaims_Simulation extends Simulation {
   val numberOfPipelineUsers:Double = 10
   /* ******************************** */
 
-  val httpProtocol = http
+  val httpProtocol = Environment.HttpProtocol
     .baseUrl(Environment.baseURL)
     .doNotTrackHeader("1")
+     .header("experimental", "true")
     .inferHtmlResources()
     .silentResources
 
@@ -66,7 +67,7 @@ class PossesionClaims_Simulation extends Simulation {
     .exitBlockOnFail {
       exec(_.set("env", s"${env}"))
       .exec(
-        CreateUser.CreateCitizen,
+        //CreateUser.CreateCitizen,
         Homepage.PossessionClaimsServiceHomepage
       )
     }

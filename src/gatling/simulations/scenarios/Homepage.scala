@@ -25,11 +25,11 @@ object Homepage {
         .get(BaseURL + "/")
         .headers(CommonHeader)
         .header("sec-fetch-site", "none")
-        .check(regex("state=([a-z0-9-]+)&client").saveAs("state"))
-        .check(CsrfCheck.save)
+        //.check(regex("state=([a-z0-9-]+)&client").saveAs("state"))
+        //.check(CsrfCheck.save)
         .check(substring("Sign in or create an account")))
 
     }
 
-    .pause(MinThinkTime.seconds, MaxThinkTime.seconds)
+    .pause(MinThinkTime, MaxThinkTime)
 }

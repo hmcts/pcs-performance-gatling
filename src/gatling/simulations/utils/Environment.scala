@@ -12,4 +12,6 @@ object Environment {
   val minThinkTime = 5
   val maxThinkTime = 7
 
+  val HttpProtocol = http
+
 }
