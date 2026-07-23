@@ -53,7 +53,6 @@ class PossessionClaims_Simulation extends Simulation {
   val httpProtocol = Environment.HttpProtocol
     .baseUrl(Environment.baseURL)
     .doNotTrackHeader("1")
-     .header("experimental", "true")
     .inferHtmlResources()
     .silentResources
 
