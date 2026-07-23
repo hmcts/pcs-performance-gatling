@@ -16,9 +16,9 @@ object Respondent {
 
   val CheckBeforeStart =
 
-    group("PossessionClaims_006_CheckBeforeStart") {
+    group("PossessionClaims_060_CheckBeforeStart") {
 
-      exec(http("PossessionClaims_006_005_CheckBeforeStart")
+      exec(http("PossessionClaims_060_005_CheckBeforeStart")
         .get(BaseURL + "/case/#{caseId}/respond-to-claim/start-now")
         .headers(CommonHeader)
         .check(CsrfCheck.save)
@@ -29,9 +29,9 @@ object Respondent {
 
     .pause(MinThinkTime, MaxThinkTime)
 
-    .group("PossessionClaims_007_CheckBeforeStartSubmit") {
+    .group("PossessionClaims_070_CheckBeforeStartSubmit") {
 
-      exec(http("PossessionClaims_007_005_CheckBeforeStartSubmit")
+      exec(http("PossessionClaims_070_005_CheckBeforeStartSubmit")
           .post(BaseURL + "/case/#{caseId}/respond-to-claim/start-now")
           .headers(CommonHeader)
           .headers(PostHeader)
@@ -42,9 +42,9 @@ object Respondent {
 
     .pause(MinThinkTime, MaxThinkTime)
 
-    .group("PossessionClaims_008_FreeLegalAdvice") {
+    .group("PossessionClaims_080_FreeLegalAdvice") {
 
-      exec(http("PossessionClaims_008_005_FreeLegalAdvice")
+      exec(http("PossessionClaims_080_005_FreeLegalAdvice")
           .post(BaseURL + "/case/#{caseId}/respond-to-claim/free-legal-advice?nav=1")
           .headers(CommonHeader)
           .headers(PostHeader)
@@ -56,9 +56,9 @@ object Respondent {
 
     .pause(MinThinkTime, MaxThinkTime)
 
-    .group("PossessionClaims_009_Solicitor") {
+    .group("PossessionClaims_090_Solicitor") {
 
-      exec(http("PossessionClaims_009_005_Solicitor")
+      exec(http("PossessionClaims_090_005_Solicitor")
           .post(BaseURL + "/case/#{caseId}/respond-to-claim/solicitor?nav=1")
           .headers(CommonHeader)
           .headers(PostHeader)
@@ -71,9 +71,9 @@ object Respondent {
       
     .pause(MinThinkTime, MaxThinkTime)
 
-    .group("PossessionClaims_010_CheckYourAnswersSubmit") {
+    .group("PossessionClaims_100_CheckYourAnswersSubmit") {
 
-      exec(http("PossessionClaims_010_005_CheckYourAnswersSubmit")
+      exec(http("PossessionClaims_100_005_CheckYourAnswersSubmit")
           .post(BaseURL + "/case/#{caseId}/respond-to-claim/check-your-answers-start-now-and-details")
           .headers(CommonHeader)
           .headers(PostHeader)

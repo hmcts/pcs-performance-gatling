@@ -17,9 +17,9 @@ object Login {
 
   val PossessionClaimsServiceLogin =
 
-    group("PossessionClaims_002_Login") {
+    group("PossessionClaims_020_Login") {
 
-      exec(http("PossessionClaims_002_005_Login")
+      exec(http("PossessionClaims_020_005_Login")
         .post(IdamURL + s"/login?client_id=pcs-frontend&redirect_uri=${BaseURL}/oauth2/callback&nonce=#{nonce}&response_type=code&scope=openid%20profile%20roles&code_challenge=#{codeChallenge}&code_challenge_method=#{codeChallengeMethod}")
         .headers(CommonHeader)
         .headers(PostHeader)

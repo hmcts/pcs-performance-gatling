@@ -15,9 +15,9 @@ object CitizenHub {
 
   val ViewClaimDashboard =
 
-    group("PossessionClaims_003_ViewClaimDashboard") {
+    group("PossessionClaims_030_ViewClaimDashboard") {
 
-      exec(http("PossessionClaims_003_005_ViewClaimDashboard")
+      exec(http("PossessionClaims_030_005_ViewClaimDashboard")
         .get(BaseURL + "/case/#{caseId}/dashboard")   //#{caseId}
         .headers(CommonHeader)
         .check(substring("A property possession claim"))

@@ -15,9 +15,9 @@ object DashboardViewClaim {
 
   val ViewTheClaim =
 
-    group("PossessionClaims_004_ViewTheClaim") {
+    group("PossessionClaims_040_ViewTheClaim") {
 
-      exec(http("PossessionClaims_004_005_ViewTheClaim")
+      exec(http("PossessionClaims_040_005_ViewTheClaim")
         .get(BaseURL + "/case/#{caseId}/view-the-claim")   //#{caseId}
         .headers(CommonHeader)
         .check(substring("Date submitted"))

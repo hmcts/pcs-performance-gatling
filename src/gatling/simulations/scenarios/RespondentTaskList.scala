@@ -15,9 +15,9 @@ object RespondentTaskList {
 
   val RespondToTheClaim =
 
-    group("PossessionClaims_005_RespondToTheClaim") {
+    group("PossessionClaims_050_RespondToTheClaim") {
 
-      exec(http("PossessionClaims_005_005_RespondToTheClaim")
+      exec(http("PossessionClaims_050_005_RespondToTheClaim")
         .get(BaseURL + "/case/#{caseId}/respond-to-claim/task-list")
         .headers(CommonHeader)
         .check(substring("1. Check before you start"))
