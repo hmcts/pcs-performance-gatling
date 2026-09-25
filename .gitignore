@@ -9,3 +9,7 @@ build/**
 *.log
 out/**
 *.lock
+.metals
+.vscode
+.bloop
+bin/*

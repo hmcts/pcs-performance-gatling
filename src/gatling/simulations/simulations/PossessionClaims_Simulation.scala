@@ -11,7 +11,7 @@ import utils.Environment
 
 import scala.concurrent.duration._
 
-class Service_Simulation extends Simulation {
+class PossessionClaims_Simulation extends Simulation {
 
   /* TEST TYPE DEFINITION */
   /* pipeline = nightly pipeline against the perftest/AAT environment (configure the Jenkins_nightly file) */
@@ -50,7 +50,7 @@ class Service_Simulation extends Simulation {
   val numberOfPipelineUsers:Double = 10
   /* ******************************** */
 
-  val httpProtocol = http
+  val httpProtocol = Environment.HttpProtocol
     .baseUrl(Environment.baseURL)
     .doNotTrackHeader("1")
     .inferHtmlResources()
@@ -62,10 +62,21 @@ class Service_Simulation extends Simulation {
     println(s"Debug Mode: ${debugMode}")
   }
 
-  val Scenario = scenario( "Scenario")
+  val CUIRespondToClaim = scenario( "Citizen Respondent Scenario")
     .exitBlockOnFail {
       exec(_.set("env", s"${env}"))
-      .exec(DemoScenario.Homepage)
+      .exec(_.set("caseId", "1781545193968515")) // hard coded for now until approach understood 1781215522091823, 1781545193968515
+      .exec(
+        //CreateUser.CreateCitizen,
+        Homepage.PossessionClaimsServiceHomepage,
+        Login.PossessionClaimsServiceLogin,
+        CitizenHub.ViewClaimDashboard,
+        DashboardViewClaim.ViewTheClaim,
+        CitizenHub.ViewClaimDashboard, // <<-- this simulates going back to the main view dashboard
+        RespondentTaskList.RespondToTheClaim,
+        Respondent.CheckBeforeStart
+
+      )
     }
 
   //defines the Gatling simulation model, based on the inputs
@@ -103,7 +114,7 @@ class Service_Simulation extends Simulation {
   }
 
   setUp(
-    Scenario.inject(simulationProfile(testType, ratePerSec, numberOfPipelineUsers)).pauses(pauseOption)
+    CUIRespondToClaim.inject(simulationProfile(testType, ratePerSec, numberOfPipelineUsers)).pauses(pauseOption)
   ).protocols(httpProtocol)
   .assertions(assertions(testType))
 

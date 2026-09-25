@@ -1,4 +1,8 @@
-rootProject.name = 'template-performance' //TODO: update this with the project name
+pluginManagement {
+    includeBuild('common/common-performance/build-logic')
+}
+
+rootProject.name = 'pcs-performance-gatling'
 
 include ':common-performance'
 
