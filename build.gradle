@@ -10,5 +10,4 @@ java {
 
 performance {
     simulationClass = 'simulations.PossessionClaims_Simulation'
-    transactionNamesToGraph = ['ExampleTransaction']
 }
